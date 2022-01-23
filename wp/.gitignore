@@ -1,0 +1,37 @@
+# Application
+web/app/plugins/*
+!web/app/plugins/.gitkeep
+!web/app/plugins/wr*
+web/app/mu-plugins/*/
+web/app/upgrade
+web/app/uploads/*
+!web/app/uploads/.gitkeep
+web/app/languages
+
+# Themes
+web/app/themes/wp-bootstrap-starter
+
+# WordPress
+web/wp
+web/.htaccess
+
+# A few folders
+/vendor
+/backups
+
+# Logs
+*.log
+
+# Dotenv
+.env
+.env.*
+!.env.example
+
+# Secrets
+secret.json
+
+# WP-CLI
+wp-cli.local.yml
+
+# IDE
+.idea

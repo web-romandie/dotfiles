@@ -1,0 +1,4 @@
+@prod:
+   ssh: PLACEHOLDER_admin@PLACEHOLDER.ftp.infomaniak.com:/home/clients/PLACEHOLDER/sites/footingclubmeyrin.ch
+@dev:
+   ssh: PLACEHOLDER_admin@PLACEHOLDER.ftp.infomaniak.com:/home/clients/PLACEHOLDER/sites/wr.footingclubmeyrin.ch

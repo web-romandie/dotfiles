@@ -1,0 +1,50 @@
+{
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://wpackagist.org"
+    },
+    {
+      "type": "git",
+      "url": "https://github.com/web-romandie/wp-cli-rsync.git"
+    },
+    {
+      "type": "git",
+      "url": "https://github.com/web-romandie/wp-cli-deploy.git"
+    }
+  ],
+  "require": {
+    "php": ">=7.4",
+    "ext-dom": "20031129",
+    "ext-json": "*",
+    "wp-cli/wp-cli-bundle": "^2.5",
+    "wr/wp-cli-rsync": "^1.0",
+    "wr/wp-cli-deploy": "^1.0",
+    "wpstarter/framework": "^1.4"
+  },
+  "scripts": {
+    "wp": "wp",
+    "dev": "echo 'Starting http://localhost:8255 && lsof -t -i :8255 | xargs kill -15 \n...' && wp server --port=8255",
+    "stop": "lsof -t -i :8255 | xargs kill -15",
+    "import:prod:db": "wp @prod db export - > db.sql && wp db import db.sql && rm db.sql",
+    "import:dev:db": "wp @dev db export - > db.sql && wp db import db.sql && rm db.sql",
+    "import:prod:replace": "wp search-replace 'https://PLACEHOLDER.ch' 'http://localhost:8255' --quiet",
+    "import:dev:replace": "wp search-replace 'https://dev.PLACEHOLDER.ch' 'http://localhost:8255' --quiet",
+    "import:prod:files": "wp rsync prod",
+    "import:dev:files": "wp rsync dev",
+    "import:prod": "composer import:prod:db && composer import:prod:replace && composer import:prod:files",
+    "import:dev": "composer import:dev:db && composer import:dev:replace && composer import:dev:files",
+    "deploy:prod": "wp deploy prod",
+    "deploy:dev": "wp deploy dev",
+    "show:config:prod": "wp @prod config list",
+    "show:config:dev": "wp @dev config list",
+    "clone:prod2dev": "composer clone:prod2dev:db && composer clone:prod2dev:replace",
+    "clone:prod2dev:db": "wp @prod db export ../../backups-internal/db.sql && wp @dev db import ../../backups-internal/db.sql",
+    "clone:prod2dev:replace": "wp @dev search-replace 'https://PLACEHOLDER.ch' 'https://dev.PLACEHOLDER.ch' --quiet"
+  },
+  "config": {
+    "allow-plugins": {
+      "composer/installers": true
+    }
+  }
+}

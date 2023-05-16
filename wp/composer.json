@@ -24,8 +24,6 @@
   },
   "scripts": {
     "wp": "wp",
-    "dev": "echo 'Starting http://localhost:8255 && lsof -t -i :8255 | xargs kill -15 \n...' && wp server --port=8255",
-    "stop": "lsof -t -i :8255 | xargs kill -15",
     "import:prod:db": "wp @prod db export - > db.sql && wp db import db.sql && rm db.sql",
     "import:dev:db": "wp @dev db export - > db.sql && wp db import db.sql && rm db.sql",
     "import:prod:replace": "wp search-replace 'https://PLACEHOLDER.ch' 'http://localhost:8255' --quiet",

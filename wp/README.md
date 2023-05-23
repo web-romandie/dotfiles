@@ -44,6 +44,12 @@ wp plugin install wp-super-cache
 rm -rf wp-content/themes
 rsync -av avgo_admin@avgo.ftp.infomaniak.com:~/sites/PLACEHOLDER.ch/wp-content/themes wp-content
 
+# Adjust .env variables for possible wp-starter plugin based.
+cd wp-content/plugins/rdv-connector
+cp .env.example .env
+php artisan key:generate
+
 # Run the server
-composer dev
+cd -
+wp server --port=8255
 ```

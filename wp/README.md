@@ -15,17 +15,21 @@ wp core config --dbhost=localhost --dbname=PLACEHOLDER --dbuser=root --dbpass=ro
 wp db create
 wp db check
 
-# This will create a wp-config.php
-# replace the value
-# $table_prefix  = 'wp_910009_';
-# cat ~/sites/PLACEHOLDER.ch/wp-config.php
+# Replace the table prefix in wp-config.php
 nano wp-config.php
+# $table_prefix  = 'wp_910009_';
+# Verify the table prefix
+wp db prefix
 
-# Make sure composer is used and install npm packages
+# Install composer packages
 composer install
 
 # Check the remote configuration can be correctly displayed
 composer show:config:prod
+
+# Install the website locally.
+# It is required to import a fresh database dump and will be overriden by the import:prod command. 
+wp core install --url=http://localhost:8533 --title="My WP" --admin_user=admin --admin_password=password --admin_email=ad@m.in (http://--admin_email=ad@m.in/)
 
 # Import the website
 composer import:prod
